@@ -98,19 +98,54 @@ values ('S1','Prof.','Sabados',2,2,10);
 insert into turma(descricao, professor, periodo, id_turno, id_curso, id_aluno)
 values ('S1','Prof.','Sabados',2,1,11);
 
+insert into turma(descricao, professor, periodo, id_turno, id_curso, id_aluno)
+values ('S1','Prof.','Sabados',1,2,12);
+
+insert into turma(descricao, professor, periodo, id_turno, id_curso, id_aluno)
+values ('S1','Alicio','Sabados',1,1,9);
+
 SELECT Orders.OrderID, Customers.CustomerName
 FROM Orders
 INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
 
 select t.descricao as 'Turma', 
 t.professor as 'Nome Prof', 
-tr.descricao as Turno , 
+tr.descricao as 'Turno' , 
 c.nome as 'Curso' , 
-p.nome as 'Aluno'
+p.nome as 'Aluno',
+a.matricula as 'Matrícula'
 from turma t
 inner join turno tr on t.id_turno = tr.id 
 inner join curso c ON t.id_curso = c.id 
 inner join aluno a on t.id_aluno = a.id
 inner join pessoa p on a.id_pessoa = p.id 
+;
 
 
+--tabela de professor
+-- inserir os nomes que contem na turma
+-- fazer referencia com professoe e turma
+-- atualizar cadastros com id de professor nos dados
+
+
+create table professor(
+	id int not null auto_increment primary key,
+    nome varchar(100),
+    idade int,
+    cpf varchar(20),
+    email varchar(100),
+    rg varchar(20),
+    id_curso int,
+    id_turno int
+     );
+
+    select * from professor;
+    
+insert into professor (nome,idade,cpf,email,rg,id_curso,id_turno)
+values('Prof',48,03741896532,'prof@teste.com',7845,1,1),
+('Alicio',36,061458742561,'alicio@teste.com',3981,2,2);
+
+insert into professor (nome,idade,cpf,email,rg,id_curso,id_turno)
+value('Prof',48,03741896532,'prof@teste.com',7845,1,2);
+
+-- https://docs.google.com/document/d/1fQMAzlre3OfNhhtX_ODnflC98Y84l85KJtSngkg_u_A/edit?usp=sharing
