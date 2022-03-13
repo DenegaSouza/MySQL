@@ -1,3 +1,5 @@
+-- https://docs.google.com/document/d/1fQMAzlre3OfNhhtX_ODnflC98Y84l85KJtSngkg_u_A/edit --
+
 create schema ecommerce;
 
 use ecommerce;
@@ -97,12 +99,6 @@ alter table item_venda add index venda_produto_id (id_produto asc);
 
 
 -- Inicio da criação das constraints de chave estrangeira --
-alter table venda add constraint fk_produto_fornecedor
-foreign key(id_fornecedor)
-references fornecedor(id)
-on delete no action
-on update no action;
-
 
 alter table venda add constraint fk_venda_cliente
 foreign key(id_cliente)
@@ -127,4 +123,17 @@ foreign key(id_produto)
 references produto (id)
 on delete no action
 on update no action;
+
+alter table venda drop constraint fk_produto_fornecedor;
+
+alter table produto add constraint fk_produto_fornecedor
+foreign key(id_fornecedor)
+references fornecedor(id)
+on delete no action
+on update no action;
+
 --  Fim da criação das constraints --
+
+-- delete from venda
+-- where xxx = 'xxx' --
+
